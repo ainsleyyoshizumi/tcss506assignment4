@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cosmo Bootstrap Site</title>
     <!-- Bootswatch Cosmo Theme -->
@@ -10,34 +9,36 @@
     <style>
         body {
             padding-top: 56px;
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff; /* Optional: Adjust text color for better contrast */
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">TripAdvisor reviews</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Travel Guide</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="cityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ city if city else 'City' }}
+                        <a class="nav-link dropdown-toggle" href="#" id="cityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            City
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="cityDropdown">
-                            {% for city_option in ['Tacoma', 'Seattle', 'Olympia' ] %}
-                                <li><a class="dropdown-item" href="{{ url_for('index', city=city_option, category=category) }}">{{ city_option }}</a></li>
-                            {% endfor %}
+                            <li><a class="dropdown-item" href="/city/seattle">Seattle</a></li>
+                            <li><a class="dropdown-item" href="/city/tacoma">Tacoma</a></li>
+                            <li><a class="dropdown-item" href="/city/olympia">Olympia</a></li> <!-- Added Olympia -->
                         </ul>
                     </li>
-
-                    <!-- Newly added about link -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                        <a class="nav-link" href="/about">About</a> <!-- Replaced Categories with About -->
                     </li>
                 </ul>
             </div>
