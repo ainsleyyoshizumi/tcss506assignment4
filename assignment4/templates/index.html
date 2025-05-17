@@ -3,7 +3,7 @@
 {% block content %}
     <!-- Main Content -->
     <div class="container mt-4">
-        <h2 class="mb-4">TripAdvisor Data for {{ city }}, {{ state }} - {{ category }}</h2>
+        <h2 class="mb-4">TripAdvisor Data for {{ city }}, {{ state }}</h2>
         
         <!-- Accordion -->
         <div class="accordion" id="tripAdvisorAccordion">
@@ -19,28 +19,53 @@
                     <div class="accordion-body">
                         <div id="restaurantsCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                {% for restaurant in location_data.restaurants %}
-                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="card text-center" style="width: 18rem;">
-                                                {% if restaurant.photo %}
-                                                    <img src="{{ restaurant.photo }}" class="card-img-top" alt="{{ restaurant.name }}" style="height: 200px; object-fit: cover;">
-                                                {% else %}
-                                                    <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
-                                                        <p class="text-muted">No photo available</p>
-                                                    </div>
-                                                {% endif %}
-                                                <div class="card-body text-center">
-                                                    <h5 class="card-title">{{ restaurant.name }}</h5>
-                                                    <p class="card-text">{{ restaurant.description }}</p>
-                                                    <div class="text-center">
-                                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                {% if category == 'all' %}
+                                    {% for restaurant in location_data.restaurants %}
+                                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="card text-center" style="width: 18rem;">
+                                                    {% if restaurant.photo %}
+                                                        <img src="{{ restaurant.photo }}" class="card-img-top" alt="{{ restaurant.name }}" style="height: 200px; object-fit: cover;">
+                                                    {% else %}
+                                                        <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
+                                                            <p class="text-muted">No photo available</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                                                        <p class="card-text">{{ restaurant.description }}</p>
+                                                        <div class="text-center">
+                                                            <a href="#" class="btn btn-primary">Learn More</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                {% else %}
+                                    {% for restaurant in location_data %}
+                                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="card text-center" style="width: 18rem;">
+                                                    {% if restaurant.photo %}
+                                                        <img src="{{ restaurant.photo }}" class="card-img-top" alt="{{ restaurant.name }}" style="height: 200px; object-fit: cover;">
+                                                    {% else %}
+                                                        <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
+                                                            <p class="text-muted">No photo available</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                                                        <p class="card-text">{{ restaurant.description }}</p>
+                                                        <div class="text-center">
+                                                            <a href="#" class="btn btn-primary">Learn More</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#restaurantsCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -66,28 +91,30 @@
                     <div class="accordion-body">
                         <div id="hotelsCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                {% for hotel in location_data.hotels %}
-                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="card text-center" style="width: 18rem;">
-                                                {% if hotel.photo %}
-                                                    <img src="{{ hotel.photo }}" class="card-img-top" alt="{{ hotel.name }}" style="height: 200px; object-fit: cover;">
-                                                {% else %}
-                                                    <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
-                                                        <p class="text-muted">No photo available</p>
-                                                    </div>
-                                                {% endif %}
-                                                <div class="card-body text-center">
-                                                    <h5 class="card-title">{{ hotel.name }}</h5>
-                                                    <p class="card-text">{{ hotel.address }}</p>
-                                                    <div class="text-center">
-                                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                {% if category == 'all' %}
+                                    {% for hotel in location_data.hotels %}
+                                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="card text-center" style="width: 18rem;">
+                                                    {% if hotel.photo %}
+                                                        <img src="{{ hotel.photo }}" class="card-img-top" alt="{{ hotel.name }}" style="height: 200px; object-fit: cover;">
+                                                    {% else %}
+                                                        <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
+                                                            <p class="text-muted">No photo available</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title">{{ hotel.name }}</h5>
+                                                        <p class="card-text">{{ hotel.address }}</p>
+                                                        <div class="text-center">
+                                                            <a href="#" class="btn btn-primary">Learn More</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#hotelsCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -113,28 +140,30 @@
                     <div class="accordion-body">
                         <div id="attractionsCarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                {% for attraction in location_data.attractions %}
-                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="card text-center" style="width: 18rem;">
-                                                {% if attraction.photo %}
-                                                    <img src="{{ attraction.photo }}" class="card-img-top" alt="{{ attraction.name }}" style="height: 200px; object-fit: cover;">
-                                                {% else %}
-                                                    <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
-                                                        <p class="text-muted">No photo available</p>
-                                                    </div>
-                                                {% endif %}
-                                                <div class="card-body text-center">
-                                                    <h5 class="card-title">{{ attraction.name }}</h5>
-                                                    <p class="card-text">{{ attraction.description }}</p>
-                                                    <div class="text-center">
-                                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                {% if category == 'all' %}
+                                    {% for attraction in location_data.attractions %}
+                                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="card text-center" style="width: 18rem;">
+                                                    {% if attraction.photo %}
+                                                        <img src="{{ attraction.photo }}" class="card-img-top" alt="{{ attraction.name }}" style="height: 200px; object-fit: cover;">
+                                                    {% else %}
+                                                        <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
+                                                            <p class="text-muted">No photo available</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title">{{ attraction.name }}</h5>
+                                                        <p class="card-text">{{ attraction.description }}</p>
+                                                        <div class="text-center">
+                                                            <a href="#" class="btn btn-primary">Learn More</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#attractionsCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

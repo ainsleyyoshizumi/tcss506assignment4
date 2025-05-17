@@ -9,32 +9,55 @@ app.secret_key = 'your_secret_key_here'
 
 @app.route('/')
 def index():
-    session['city'] = 'Tacoma'
-    session['state'] = 'WA'
-    session['category'] = 'restaurants'
-
-    if request.method == 'GET':
-        if request.args.get('city'):
-            session['city'] = request.args.get('city')
-        if request.args.get('state'):
-            session['state'] = request.args.get('state')
-        if request.args.get('category'):
-            session['category'] = request.args.get('category')
-        
-    # Create a data object with business information
+    # Default to Tacoma if no city is selected
+    city = session.get('city', 'Tacoma')
+    state = session.get('state', 'WA')
+    category = session.get('category', 'restaurants')
+    
+    # Fetch data for the default or selected city
     location_data = fetch_tripadvisor_data(
-        session['city'],
-        session['state'],
-        session['category'],
+        city,
+        state,
+        category,
         use_cache_only=True
     )
 
     return render_template(
         'index.html',
-        city=session['city'],
-        state=session['state'],
-        category=session['category'],
+        city=city,
+        state=state,
+        category=category,
         location_data=location_data
+    )
+
+@app.route('/city/<city_name>')
+def city_view(city_name):
+    # Capitalize city name for consistency
+    city = city_name.capitalize()
+    state = 'WA'  # All cities are in Washington
+    
+    # Store the selected city in session
+    session['city'] = city
+    session['state'] = state
+    
+    # Initialize categories dictionary to store all data
+    categories = {}
+    
+    # Fetch data for all categories
+    for category in ['restaurants', 'hotels', 'attractions']:
+        categories[category] = fetch_tripadvisor_data(
+            city,
+            state,
+            category,
+            use_cache_only=True
+        )
+    
+    return render_template(
+        'index.html',
+        city=city,
+        state=state,
+        category='all',  # Show all categories
+        location_data=categories
     )
 
 @app.route('/about')
