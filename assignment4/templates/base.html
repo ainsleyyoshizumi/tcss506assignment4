@@ -9,11 +9,44 @@
     <style>
         body {
             padding-top: 56px;
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Replace with your image URL */
+            background-image: url('https://images.unsplash.com/photo-1469321461812-afeb94496b27?q=80&w=2940&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: #fff; /* Optional: Adjust text color for better contrast */
+            position: relative;
+        }
+        
+        /* Add a dark overlay to improve text readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: -1;
+        }
+
+        /* Make cards slightly transparent to blend with the background */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Ensure text in cards is readable */
+        .card-body {
+            color: #333;
+        }
+
+        /* Style the navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            color: #333;
         }
     </style>
 </head>
@@ -52,7 +85,7 @@
     <!-- Footer -->
     <footer class="bg-light py-4 mt-5">
         <div class="container">
-            <p class="text-center text-muted mb-0">© 2023 My Website. All rights reserved.</p>
+            <p class="text-center text-muted mb-0">© Trip Planner App, 2025 Ainsley Yoshizumi. All rights reserved.</p>
         </div>
     </footer>
 

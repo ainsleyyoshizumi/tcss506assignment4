@@ -2,8 +2,22 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1>About This Application</h1>
-    <p>This web application provides TripAdvisor reviews for restaurants, hotels, and attractions in the Seattle, Tacoma, and Olympia areas. It uses a responsive Bootstrap layout to ensure a user-friendly experience.</p>
-    <p>Created by <strong>Ainsley Yoshizumi</strong>.</p>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">About This Application</h1>
+                    
+                    <p class="lead">This web application provides TripAdvisor reviews for restaurants, hotels, and attractions in the Seattle, Tacoma, and Olympia areas. It uses a responsive Bootstrap layout to ensure a user-friendly experience.</p>
+                    
+                    <p class="text-center mt-4">Created by <strong>Ainsley Yoshizumi</strong></p>
+                    
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-primary">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
